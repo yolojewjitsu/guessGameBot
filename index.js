@@ -1,6 +1,7 @@
 const TelegramApi = require("node-telegram-bot-api");
 const {gameOptions, againOptions} = require(`./options`);
-const token = "5694502809:AAFtQ65i9p36ck36O86RzaskKUn_77lqzbU";
+// const token = "5694502809:AAFtQ65i9p36ck36O86RzaskKUn_77lqzbU";
+const token = '5690505091:AAF1RNHIy9iZJ2CLyjDaSD1TXCUGHewV02k';
 
 const bot = new TelegramApi(token, { polling: true });
 
@@ -39,14 +40,15 @@ const start = async () => {
   });
   bot.on("callback_query", async (msg) => {
     const data = msg.data;
+    
     const chatId = msg.message.chat.id;
     if (data === `/again`) {
         return startGame(chatId)
     }
-    if (data === chats[chatId]) {
+    if (data == chats[chatId]) {
       return await bot.sendMessage(
         chatId,
-        `Congratulations, you guessed the number ${chats[chatId]}}`,
+        `Congratulations, you guessed the number ${chats[chatId]}`,
         againOptions
       );
     } else {
